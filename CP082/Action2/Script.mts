@@ -782,12 +782,18 @@ RunAction "WIC2", oneIteration
 	'			Wait 5
 	'		End If	
 		
+		
+
+
+
 			If JavaWindow("Ejecutivo de interacción").JavaDialog("Mensaje").Exist(2) Then
 				wait 3
 				var1= JavaWindow("Ejecutivo de interacción").JavaDialog("Mensaje").JavaObject("JPanel").GetROProperty("text")
 				JavaWindow("Ejecutivo de interacción").JavaDialog("Mensaje").JavaButton("OK").Click
 				wait 1
 			End If
+			
+			
 			If JavaWindow("Ejecutivo de interacción").JavaDialog("Error interno").Exist(2) Then
 				JavaWindow("Ejecutivo de interacción").JavaDialog("Error interno").Close
 				wait 2
@@ -831,7 +837,11 @@ RunAction "WIC2", oneIteration
 	If JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Resumen de la orden (Orden").JavaButton("Enviar orden").Exist(2) Then
 		'Damos clic en el boton "Enviar Orden"
 		JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Resumen de la orden (Orden").JavaButton("Enviar orden").Click
-		Wait 3
+		wait 8
+		If JavaWindow("Ejecutivo de interacción").JavaDialog("Mensajes de validación").Exist=True Then
+			wait 3
+			JavaWindow("Ejecutivo de interacción").JavaDialog("Mensajes de validación").JavaButton("Aceptar").Click
+		End If
 	End If
 	
 	'Bucle que espera el envío de la orden

@@ -829,7 +829,12 @@ RunAction "WIC2", oneIteration
 	If JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Resumen de la orden (Orden").JavaButton("Enviar orden").Exist(2) Then
 		'Damos clic en el boton "Enviar Orden"
 		JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Resumen de la orden (Orden").JavaButton("Enviar orden").Click
-		Wait 3
+		Wait 8
+		If JavaWindow("Ejecutivo de interacción").JavaDialog("Mensajes de validación").Exist=True Then
+			wait 3
+			JavaWindow("Ejecutivo de interacción").JavaDialog("Mensajes de validación").JavaButton("Aceptar").Click
+		End If	
+
 	End If
 	
 	'Bucle que espera el envío de la orden
@@ -1181,7 +1186,7 @@ Sub DetalleActividadOrden()
 	For Iterator = filas-1 To 0 step -1	    
 		varselec=JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Ver acción de orden: 794525A").JavaTable("SearchJTable").GetCellData(Iterator,0)	
 		
-		If varselec="Cerrar Acción de Orden" or varselec="Actualizar Descuento" Then
+		If varselec="Cerrar Acción de Orden" or varselec="Actualizar Descuento" or varselec="Finalizar compra en la Negociación" Then
 			DataTable("s_Resultado",dtLocalSheet)="Exitoso"
 			DataTable("s_Detalle",dtLocalSheet)="La orden "&DataTable("s_Nro_Orden",dtLocalSheet)&" culmino en estado Cerrado, exitoso en la Actividad "&varselec&""
 			Reporter.ReportEvent micPass, DataTable("s_Resultado",dtLocalSheet), DataTable("s_Detalle",dtLocalSheet) 	   			    	
