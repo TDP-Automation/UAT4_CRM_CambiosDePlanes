@@ -201,8 +201,8 @@ Sub FlujoWIC()
 
 	If DataTable("e_WIC_ValidaCli",dtLocalSheet)="SI" Then
 		
-RunAction "WIC", oneIteration
 
+RunAction "WIC", oneIteration
 	End If
 	'	    	'Se da Clic en el botón continuar
 '			If UIAWindow("Ejecutivo de interacción").UIAWindow("Autenticación del Cliente").UIAObject("Movistar").UIAObject("Consulta previa").Exist(3) And UIAWindow("Ejecutivo de interacción").UIAWindow("Autenticación del Cliente").UIAObject("Movistar").UIAButton("Continuar").Exist(3) Then
@@ -625,7 +625,10 @@ Sub NegociarDistribucion()
 			
 End Sub
 Sub Financiamiento()
-
+	While JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Pago (Orden 846329A").JavaEdit("ID del cliente:").Exist=False
+		wait 1
+	Wend
+	wait 3
 	Dim textID
 	textID=JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Pago (Orden 846329A").JavaEdit("ID del cliente:").GetROProperty("text")
 	While textID =""
@@ -762,6 +765,7 @@ Sub GeneraContrato() @@ hightlight id_;_29139057_;_script infofile_;_ZIP::ssf28.
 					
 
 RunAction "WIC2", oneIteration
+
 
 					Exit do
 				End If

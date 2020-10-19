@@ -624,7 +624,11 @@ Sub NegociarDistribucion()
 			
 End Sub
 Sub Financiamiento()
-
+	While JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Pago (Orden 846329A").JavaEdit("ID del cliente:").Exist=False
+	wait 1
+		
+	Wend
+	wait 3
 	Dim textID
 	textID=JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Pago (Orden 846329A").JavaEdit("ID del cliente:").GetROProperty("text")
 	While textID =""
@@ -759,6 +763,7 @@ Sub GeneraContrato() @@ hightlight id_;_29139057_;_script infofile_;_ZIP::ssf28.
 				JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Resumen de la orden (Orden").JavaButton("Validade y Ver Contrato").Click
 				If DataTable("e_WIC_ContrCli",dtLocalSheet)="SI" Then
 					
+
 RunAction "WIC2", oneIteration
 					Exit do
 				End If
