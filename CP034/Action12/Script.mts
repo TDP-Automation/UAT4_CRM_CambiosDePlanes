@@ -14,22 +14,29 @@ Sub Potspago()
 While Window("Ejecutivo de interacción").InsightObject("InsightObject").Exist = false
 	wait 1
 Wend
+wait 3
  Window("Ejecutivo de interacción").InsightObject("InsightObject").Click
+ wait 3
  While Window("Ejecutivo de interacción").InsightObject("InsightObject_4").Exist = false
  	wait 1
  Wend
+ wait 3
  Window("Ejecutivo de interacción").InsightObject("InsightObject_4").Click
+ wait 3
 While  (Window("Ejecutivo de interacción").InsightObject("InsightObject_16").Exist or Window("Ejecutivo de interacción").InsightObject("InsightObject_24").Exist) = false
 	wait 1
 Wend
+wait 3
 If Window("Ejecutivo de interacción").InsightObject("InsightObject_24").Exist = true Then
 	Window("Ejecutivo de interacción").CaptureBitmap RutaEvidencias() & "ErrorServicio.png", True
 	imagenToWord "Error al Consultar Servicio Web", RutaEvidencias() & "ErrorServicio.png"
-	wait 1
+	wait 3
 	Window("Ejecutivo de interacción").InsightObject("InsightObject_26").Click
+	wait 3
 While JavaWindow("Ejecutivo de interacción").JavaDialog("Autenticación del Cliente").JavaDialog("Error Message").Exist= False
 	wait 1
 Wend
+wait 3
 JavaWindow("Ejecutivo de interacción").JavaDialog("Autenticación del Cliente").JavaDialog("Error Message").JavaButton("Cancelar").Click
 DataTable("s_Resultado","CAPLAN") ="Fallido"
 DataTable("s_Detalle","CAPLAN") ="Error al consultar servicio web"
@@ -40,25 +47,28 @@ Window("Ejecutivo de interacción").CaptureBitmap RutaEvidencias() & "ScoreCalcu
 imagenToWord "Score Calculado", RutaEvidencias() & "ScoreCalculado.png"
 Set shell = CreateObject("Wscript.Shell") 
 shell.SendKeys "{PGDN}"
-
+wait 3
 If Window("Ejecutivo de interacción").InsightObject("InsightObject_5").Exist =True Then
-	
+	wait 3
 	Window("Ejecutivo de interacción").InsightObject("InsightObject_5").Click
 End If 
 wait 3
 Set shell = CreateObject("Wscript.Shell") 
 shell.SendKeys "{PGDN}"
 If Window("Ejecutivo de interacción").InsightObject("InsightObject_7").Exist = True Then
+	wait 3
 	If Window("Ejecutivo de interacción").InsightObject("InsightObject_19").Exist = true Then
 		Call Validacion()
     End If
+    wait 3
    	Window("Ejecutivo de interacción").InsightObject("InsightObject_7").Click
 End If
 wait 5
 Window("Ejecutivo de interacción").CaptureBitmap RutaEvidencias() & "ValidacionDatos.png", True
 imagenToWord "Validación de Datos Exitosa", RutaEvidencias() & "ValidacionDatos.png"
-
+wait 3
 If Window("Ejecutivo de interacción").InsightObject("InsightObject_8").Exist = True Then
+		wait 3
 		Window("Ejecutivo de interacción").InsightObject("InsightObject_8").Click
 End If
 
@@ -66,18 +76,19 @@ End If
 
 End Sub
 Sub Validacion()
+	wait 3
 	Window("Ejecutivo de interacción").InsightObject("InsightObject_19").Click
-	wait 1
+	wait 3
 	Window("Ejecutivo de interacción").InsightObject("InsightObject_21").Click
-	wait 1
+	wait 3
 	Set shell = CreateObject("Wscript.Shell") 
 	shell.SendKeys "prueba"
-	wait 1
+	wait 3
 	Window("Ejecutivo de interacción").InsightObject("InsightObject_22").Type micCtrlDwn + micAltDwn + "q" + micCtrlUp + micAltUp
-	wait 2
+	wait 3
 	Set shell = CreateObject("Wscript.Shell") 
 	shell.SendKeys "gmail.com"
-	wait 1
+	wait 3
 
 End Sub
 
@@ -87,9 +98,11 @@ Sub Prepago()
 	Wend
 	Window("Ejecutivo de interacción").CaptureBitmap RutaEvidencias() & "Prepago.png", True
 	imagenToWord "Click Prepago", RutaEvidencias() & "Prepago.png"
+	wait 3
 	Window("Ejecutivo de interacción").InsightObject("InsightObject_3").Click
-	
+	wait 3
 	If Window("Ejecutivo de interacción").InsightObject("InsightObject_5").Exist=True Then
+		wait 3
 		Window("Ejecutivo de interacción").InsightObject("InsightObject_5").Click
 	End If
 	
@@ -97,22 +110,25 @@ Sub Prepago()
 	wait 3
 	Set shell = CreateObject("Wscript.Shell") 
 	shell.SendKeys "{PGDN}"
-	
+	wait 3
 	If  Window("Ejecutivo de interacción").InsightObject("InsightObject_7").Exist=True Then
+		wait 3
 		If Window("Ejecutivo de interacción").InsightObject("InsightObject_23").Exist = true Then
+			wait 3
 			Window("Ejecutivo de interacción").InsightObject("InsightObject_23").Click
-			wait 1
+			wait 3
 			Window("Ejecutivo de interacción").InsightObject("InsightObject_21").Click
-			wait 1
+			wait 3
 			Set shell = CreateObject("Wscript.Shell") 
 			shell.SendKeys "prueba"
-			wait 1
+			wait 3
 			Window("Ejecutivo de interacción").InsightObject("InsightObject_22").Type micCtrlDwn + micAltDwn + "q" + micCtrlUp + micAltUp
-			wait 2
+			wait 3
 			Set shell = CreateObject("Wscript.Shell") 
 			shell.SendKeys "gmail.com"
-			wait 1
+			wait 3
 		End If
+		wait 3
 		 Window("Ejecutivo de interacción").InsightObject("InsightObject_7").Click
 		 
 	End If
@@ -159,13 +175,5 @@ Sub Portabilidad()
 	
 End Sub
 
-'Window("Ejecutivo de interacción").InsightObject("InsightObject_11").Click
-'wait 1
-'Set shell = CreateObject("Wscript.Shell") 
-'shell.SendKeys "prueba"
-'Window("Ejecutivo de interacción").InsightObject("InsightObject_11").Type micCtrlDwn + micAltDwn + "Q" + micCtrlUp + micAltUp
-'Set shell = CreateObject("Wscript.Shell") 
-'shell.SendKeys "gmail.com"
-'wait 1
 
 	

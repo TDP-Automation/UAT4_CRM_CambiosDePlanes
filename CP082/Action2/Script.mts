@@ -667,6 +667,9 @@ Sub Financiamiento()
 			While(JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Pago Inmediato").JavaList("Medio de pago").Exist) = False
 				wait 1
 			Wend
+			
+			
+			
 			Dim Iterator, Count
 				Count = 	JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Pago Inmediato").JavaList("Medio de pago").GetROProperty ("items count")
 				'MsgBox 	Count
@@ -1176,7 +1179,7 @@ Sub DetalleActividadOrden()
 	For Iterator = filas-1 To 0 step -1	    
 		varselec=JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Ver acción de orden: 794525A").JavaTable("SearchJTable").GetCellData(Iterator,0)	
 		
-		If varselec="Cerrar Acción de Orden" or varselec="Actualizar Descuento" Then
+		If varselec="Cerrar Acción de Orden" or varselec="Actualizar Descuento" or varselec="Finalizar compra en la Negociación" Then
 			DataTable("s_Resultado",dtLocalSheet)="Exitoso"
 			DataTable("s_Detalle",dtLocalSheet)="La orden "&DataTable("s_Nro_Orden",dtLocalSheet)&" culmino en estado Cerrado, exitoso en la Actividad "&varselec&""
 			Reporter.ReportEvent micPass, DataTable("s_Resultado",dtLocalSheet), DataTable("s_Detalle",dtLocalSheet) 	   			    	

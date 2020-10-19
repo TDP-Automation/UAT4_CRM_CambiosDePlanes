@@ -202,6 +202,7 @@ Sub FlujoWIC()
 	If DataTable("e_WIC_ValidaCli",dtLocalSheet)="SI" Then
 		
 RunAction "WIC", oneIteration
+
 	End If
 	'	    	'Se da Clic en el botón continuar
 '			If UIAWindow("Ejecutivo de interacción").UIAWindow("Autenticación del Cliente").UIAObject("Movistar").UIAObject("Consulta previa").Exist(3) And UIAWindow("Ejecutivo de interacción").UIAWindow("Autenticación del Cliente").UIAObject("Movistar").UIAButton("Continuar").Exist(3) Then
@@ -560,7 +561,7 @@ Sub NegociarDistribucion()
 		While JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Distribución_2").JavaEdit("Nombre y Dirección de").Exist=False
 			wait 1
 		Wend
-		
+		wait 2
 		Dim nom
 		nom=JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Negociar Distribución_2").JavaEdit("Nombre y Dirección de").GetROProperty("text")
 		
@@ -669,10 +670,10 @@ Sub Financiamiento()
 			Wend
 			Dim Iterator, Count
 				Count = 	JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Pago Inmediato").JavaList("Medio de pago").GetROProperty ("items count")
-				'MsgBox 	Count
+			
 				For Iterator = 0 To Count-1
 				 	rs = 	JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Pago Inmediato").JavaList("Medio de pago").GetItem (Iterator)
-				 	'MsgBox rs
+				 	
 					If rs = DataTable("e_MedioPago", dtLocalSheet) Then
 							JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Pago Inmediato").JavaList("Medio de pago").Select DataTable("e_MedioPago", dtLocalSheet)
 '						    wait 1
@@ -759,7 +760,9 @@ Sub GeneraContrato() @@ hightlight id_;_29139057_;_script infofile_;_ZIP::ssf28.
 				JavaWindow("Ejecutivo de interacción").JavaInternalFrame("Resumen de la orden (Orden").JavaButton("Validade y Ver Contrato").Click
 				If DataTable("e_WIC_ContrCli",dtLocalSheet)="SI" Then
 					
+
 RunAction "WIC2", oneIteration
+
 					Exit do
 				End If
 				wait 3
